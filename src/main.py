@@ -74,7 +74,7 @@ class Main:
 
     def send_event_to_database(self, timestamp, event):
         try:
-            # To implement
+            print("allo")
             pass
         except requests.exceptions.RequestException as e:
             # To implement
