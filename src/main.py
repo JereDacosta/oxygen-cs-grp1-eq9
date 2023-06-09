@@ -75,7 +75,6 @@ class Main:
 
     def send_event_to_database(self, timestamp, event):
         try:
-            print("testtest")
             pass
         except requests.exceptions.RequestException as e:
             # To implement
