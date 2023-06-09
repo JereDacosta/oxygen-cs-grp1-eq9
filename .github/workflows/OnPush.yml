@@ -2,6 +2,7 @@ name: Upload Python Package
 
 on:
   push:
+    branches: '**'
 
 jobs:
   deploy:
@@ -15,6 +16,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install build
+          pipenv install
       - name: Build package
-        run: python src/main.py
+        run: HOST=${HOST} TOKEN=${TOKEN} TICKETS=${TICKETS} T_MAX=${T_MAX} T_MIN=${T_MIN} DATABASE=${DATABASE} pipenv run start
