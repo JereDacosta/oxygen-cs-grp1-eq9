@@ -16,8 +16,6 @@ class Main:
         self.T_MIN = os.environ.get('T_MIN')
         self.DATABASE = os.environ.get('DATABASE')
 
-    print(os.environ.get('HOST'))    
-
     def __del__(self):
         if self._hub_connection != None:
             self._hub_connection.stop()
