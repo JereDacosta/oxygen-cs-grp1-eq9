@@ -16,6 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install pipenv
           pipenv install
       - name: Build package
-        run: HOST=${HOST} TOKEN=${TOKEN} TICKETS=${TWINE_PASSWORD} T_MAX=${T_MAX} T_MIN=${T_MIN} DATABASE=${DATABASE}' pipenv run start
+        run: HOST=${{secrets.HOST}} TOKEN=${{secrets.TOKEN}} TICKETS=${{secrets.TICKETS}} T_MAX=${{secrets.T_MAX}} T_MIN=${{secrets.T_MIN}} DATABASE=${{secrets.DATABASE}} pipenv run start
