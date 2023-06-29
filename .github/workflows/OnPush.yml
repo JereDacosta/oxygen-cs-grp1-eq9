@@ -14,16 +14,16 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install dependencies
-          run: |
-            python -m pip install --upgrade pip
-            pip install pipenv
-            pipenv install
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install
       - name: Build package
-          env:
-              S_HOST ${{secrets.HOST}}
-              S_TOKEN ${{secrets.TOKEN}}
-              S_TICKET ${{secrets.TICKETS}}
-              S_T_MAX ${{secrets.T_MAX}}
-              S_T_MIN ${{secrets.T_MIN}}
-              S_DATABASE ${{secrets.DATABASE}}
-          run: HOST='${S_HOST}' TOKEN='${S_TOKEN}' TICKETS='${S_TICKET}' T_MAX='${S_T_MAX}' T_MIN='${S_T_MIN}' DATABASE='${S_DATABASE}' pipenv run starts
+        env:
+            S_HOST ${{secrets.HOST}}
+            S_TOKEN ${{secrets.TOKEN}}
+            S_TICKET ${{secrets.TICKETS}}
+            S_T_MAX ${{secrets.T_MAX}}
+            S_T_MIN ${{secrets.T_MIN}}
+            S_DATABASE ${{secrets.DATABASE}}
+        run: HOST='${S_HOST}' TOKEN='${S_TOKEN}' TICKETS='${S_TICKET}' T_MAX='${S_T_MAX}' T_MIN='${S_T_MIN}' DATABASE='${S_DATABASE}' pipenv run starts
