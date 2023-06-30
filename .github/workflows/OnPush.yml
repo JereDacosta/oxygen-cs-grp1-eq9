@@ -26,13 +26,15 @@ jobs:
         run: |
           pipenv run test
 
+      - name: Stop pipeline on test failure
+        if: ${{ failure() }}
+        run: exit 1
+
       - name: Linting with pylint
         run: |
           pipenv run lint
 
-      - name: Stop pipeline on test failure
-        if: ${{ failure() }}
-        run: exit 1
+
 
       #- name: Build package
         #env:
