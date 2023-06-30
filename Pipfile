@@ -8,11 +8,15 @@ requests = "*"
 signalrcore = "*"
 
 [dev-packages]
+pytest = "*"
+pylint = {extras = ["astroid"], version = "*"}
+black = "*"
 
 [requires]
 python_version = "3.11"
 
 [scripts]
 start = "python src/main.py"
-test = "# To implement"
-lint = "# To implement"
+test = "pytest"
+lint = "python -m pylint --exit-zero src"
+format = "black ."

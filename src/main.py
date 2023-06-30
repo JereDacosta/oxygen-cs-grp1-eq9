@@ -9,12 +9,12 @@ import os
 class Main:
     def __init__(self):
         self._hub_connection = None
-        self.HOST = os.environ.get('HOST')
-        self.TOKEN = os.environ.get('TOKEN')
-        self.TICKETS = os.environ.get('TICKETS')
-        self.T_MAX = os.environ.get('T_MAX')
-        self.T_MIN = os.environ.get('T_MIN')
-        self.DATABASE = os.environ.get('DATABASE')
+        self.HOST = os.environ.get("HOST")
+        self.TOKEN = os.environ.get("TOKEN")
+        self.TICKETS = os.environ.get("TICKETS")
+        self.T_MAX = os.environ.get("T_MAX")
+        self.T_MIN = os.environ.get("T_MIN")
+        self.DATABASE = os.environ.get("DATABASE")
 
     def __del__(self):
         if self._hub_connection != None:
@@ -50,7 +50,9 @@ class Main:
         self._hub_connection.on("ReceiveSensorData", self.onSensorDataReceived)
         self._hub_connection.on_open(lambda: print("||| Connection opened."))
         self._hub_connection.on_close(lambda: print("||| Connection closed."))
-        self._hub_connection.on_error(lambda data: print(f"||| An exception was thrown closed: {data.error}"))
+        self._hub_connection.on_error(
+            lambda data: print(f"||| An exception was thrown closed: {data.error}")
+        )
 
     def onSensorDataReceived(self, data):
         try:

@@ -11,7 +11,19 @@ repos:
     hooks:
     - id: run_tests
       name: Run tests
-      entry: python ./test/test.py
+      entry: pipenv run test
+      language: system
+      pass_filenames: false
+      types: [python]
+    - id: run_lint
+      name: Run pylint
+      entry: pipenv run lint
+      language: system
+      pass_filenames: false
+      types: [python]
+    - id: run_format
+      name: Run format
+      entry: pipenv run format
       language: system
       pass_filenames: false
       types: [python]
