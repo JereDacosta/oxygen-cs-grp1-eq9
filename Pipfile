@@ -8,11 +8,12 @@ requests = "*"
 signalrcore = "*"
 
 [dev-packages]
+pytest = "*"
 
 [requires]
 python_version = "3.11"
 
 [scripts]
 start = "python src/main.py"
-test = "# To implement"
+test = "pytest"
 lint = "# To implement"

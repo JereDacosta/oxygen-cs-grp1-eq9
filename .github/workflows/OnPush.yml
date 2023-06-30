@@ -7,6 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -22,12 +23,12 @@ jobs:
 
       - name: Test with pytest
         run: |
-          pytest
+          pipenv run test
 
       - name: Stop pipeline on test failure
         if: ${{ failure() }}
         run: exit 1
-        
+
       - name: Build package
         env:
             S_HOST: ${{secrets.HOST}}
