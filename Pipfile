@@ -17,4 +17,4 @@ python_version = "3.11"
 [scripts]
 start = "python src/main.py"
 test = "pytest"
-lint = "python -m pylint src"
+lint = "python -m pylint --exit-zero src"

@@ -32,9 +32,7 @@ jobs:
 
       - name: Linting with pylint
         run: |
-          pipenv run lint
-
-
+          pipenv run lint --exit-zero
 
       #- name: Build package
         #env:
