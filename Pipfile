@@ -10,6 +10,7 @@ signalrcore = "*"
 [dev-packages]
 pytest = "*"
 pylint = {extras = ["astroid"], version = "*"}
+black = "*"
 
 [requires]
 python_version = "3.11"
@@ -18,3 +19,4 @@ python_version = "3.11"
 start = "python src/main.py"
 test = "pytest"
 lint = "python -m pylint --exit-zero src"
+format = "black ."

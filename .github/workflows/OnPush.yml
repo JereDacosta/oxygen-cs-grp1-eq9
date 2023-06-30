@@ -32,7 +32,11 @@ jobs:
 
       - name: Linting with pylint
         run: |
-          pipenv run lint --exit-zero
+          pipenv run lint
+
+      - name: Formating with black
+        run: |
+          pipenv run format
 
       #- name: Build package
         #env:
