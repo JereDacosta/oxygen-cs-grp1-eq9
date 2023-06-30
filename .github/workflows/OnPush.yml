@@ -38,5 +38,5 @@ jobs:
             S_DATABASE: ${{secrets.DATABASE}}
         run: HOST=$S_HOST TOKEN=$S_TOKEN TICKETS=$S_TICKET T_MAX=$S_T_MAX T_MIN=$S_T_MIN DATABASE=$S_DATABASE pipenv run start
 
-      - name: Stop pipeline after building package
+      - name: Stop pipeline
         run: exit 0
