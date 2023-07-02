@@ -47,5 +47,5 @@ jobs:
           S_T_MAX: ${{secrets.T_MAX}}
           S_T_MIN: ${{secrets.T_MIN}}
           S_DATABASE: ${{secrets.DATABASE}}
-        run: docker build -t oxgen-cs:latest --build-arg HOST=$S_HOST --build-arg TOKEN=$S_TOKEN .
+        run: docker build -t oxygen-cs:latest --build-arg HOST=$S_HOST --build-arg TOKEN=$S_TOKEN --build-arg TICKETS=$S_TICKET --build-arg T_MAX=$S_T_MAX --build-arg T_MIN=$S_T_MIN --build-arg DATABASE=$S_DATABASE .
         #run: HOST=$S_HOST TOKEN=$S_TOKEN TICKETS=$S_TICKET T_MAX=$S_T_MAX T_MIN=$S_T_MIN DATABASE=$S_DATABASE pipenv run start
