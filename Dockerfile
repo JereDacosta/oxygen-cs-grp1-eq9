@@ -7,14 +7,6 @@ WORKDIR /app
 # Copiez les fichiers de l'application dans le conteneur
 COPY . /app
 
-# Déclarez les arguments de construction comme variables d'environnement
-ARG HOST
-ARG TOKEN
-ARG TICKETS
-ARG T_MAX
-ARG T_MIN
-ARG DATABASE
-
 # Définissez les variables d'environnement à l'aide des arguments de construction
 ENV HOST=$HOST
 ENV TOKEN=$TOKEN
