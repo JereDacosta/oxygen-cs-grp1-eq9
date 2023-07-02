@@ -25,7 +25,7 @@ ENV DATABASE=$DATABASE
 
 # Installez les dépendances de l'application
 RUN pip install --upgrade pip && pip install pipenv
-RUN pipenv install --system --deploy
+RUN pipenv install
 
 # Exécutez la commande de démarrage de l'application
 CMD [ "python", "main.py" ]
