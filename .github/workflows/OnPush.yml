@@ -39,7 +39,7 @@ jobs:
           pipenv run format
 
       - name: Build Docker Image
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/feat/creation-image-docker-dans-le-pipeline'
         uses: docker/build-push-action@v2
         with:
           context: .
