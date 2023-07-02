@@ -16,7 +16,6 @@ ENV T_MIN=$T_MIN
 ENV DATABASE=$DATABASE
 
 # Installez les dépendances de l'application
-RUN apk add --no-cache gcc musl-dev libffi-dev openssl-dev
 RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
