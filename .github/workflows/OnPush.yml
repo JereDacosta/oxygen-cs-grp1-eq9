@@ -1,4 +1,4 @@
-name: Upload Python Package
+name: CI/CD Pipeline
 
 on:
   push:
@@ -65,5 +65,3 @@ jobs:
           push: true
           tags: jeredaco/oxygen-cs:latest
           labels: build_id=${{ github.run_id }}
-        #run: docker build -t oxygen-cs:latest --build-arg HOST=$S_HOST --build-arg TOKEN=$S_TOKEN --build-arg TICKETS=$S_TICKET --build-arg T_MAX=$S_T_MAX --build-arg T_MIN=$S_T_MIN --build-arg DATABASE=$S_DATABASE . 
-        #run: HOST=$S_HOST TOKEN=$S_TOKEN TICKETS=$S_TICKET T_MAX=$S_T_MAX T_MIN=$S_T_MIN DATABASE=$S_DATABASE pipenv run start
