@@ -51,7 +51,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
       - name: Build and Push Docker Image
-        if: github.ref == 'refs/heads/feat/creation-image-docker-dans-le-pipeline'
+        if: github.ref == 'refs/heads/feat/main'
         uses: docker/build-push-action@v4  
         env:
           S_HOST: ${{secrets.HOST}}
