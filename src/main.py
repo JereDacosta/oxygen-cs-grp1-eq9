@@ -9,12 +9,12 @@ import os
 class Main:
     def __init__(self):
         self._hub_connection = None
-       self.HOST = os.environ.get("HOST", "http://34.95.34.5")
-        self.TOKEN = os.environ.get("TOKEN", "Default token")
+        self.HOST = os.environ.get("HOST", "http://34.95.34.5")
+        self.TOKEN = os.environ.get("TOKEN", "Default")
         self.TICKETS = os.environ.get("TICKETS", 10)
         self.T_MAX = os.environ.get("T_MAX", 100)
         self.T_MIN = os.environ.get("T_MIN", 0)
-        self.DATABASE = os.environ.get("DATABASE", "Default database")
+        self.DATABASE = os.environ.get("DATABASE", "Default")
 
     def __del__(self):
         if self._hub_connection != None:
