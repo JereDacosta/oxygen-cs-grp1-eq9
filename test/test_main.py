@@ -32,6 +32,6 @@ def test_variables_defaut():
     assert main.HOST == "http://34.95.34.5"
     assert main.TOKEN == "Default"
     assert main.TICKETS == 10
-    assert main.T_MAX == 100 
-    assert main.T_MIN == 0
+    assert main.T_MAX == 90 
+    assert main.T_MIN == 10
     assert main.DATABASE == "Default"
