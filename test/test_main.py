@@ -2,7 +2,8 @@ import pytest
 import os
 from src.main import Main
 
-@pytest.fixture(autouse=True)
+# https://stackoverflow.com/questions/17801300/how-to-run-a-method-before-all-tests-in-all-classes
+@pytest.fixture(scope="session", autouse=True)
 def set_varaible_env():
     os.environ["HOST"] = "test"
     os.environ["TOKEN"] = "test"
@@ -34,4 +35,3 @@ def test_variables_defaut():
     assert main.T_MAX == 100 
     assert main.T_MIN == 0
     assert main.DATABASE == "Default"
-
