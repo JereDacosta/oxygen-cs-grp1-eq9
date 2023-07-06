@@ -12,8 +12,8 @@ class Main:
         self.HOST = os.environ.get("HOST", "http://34.95.34.5")
         self.TOKEN = os.environ.get("TOKEN", "Default")
         self.TICKETS = os.environ.get("TICKETS", 10)
-        self.T_MAX = os.environ.get("T_MAX", 100)
-        self.T_MIN = os.environ.get("T_MIN", 0)
+        self.T_MAX = os.environ.get("T_MAX", 90)
+        self.T_MIN = os.environ.get("T_MIN", 10)
         self.DATABASE = os.environ.get("DATABASE", "Default")
 
     def __del__(self):
@@ -59,7 +59,7 @@ class Main:
             print(data[0]["date"] + " --> " + data[0]["data"])
             date = data[0]["date"]
             dp = float(data[0]["data"])
-            self.send_temperature_to_fastapi(date, dp)
+            # self.send_temperature_to_fastapi(date, dp)
             self.analyzeDatapoint(date, dp)
         except Exception as err:
             print(err)

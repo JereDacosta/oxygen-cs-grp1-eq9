@@ -63,5 +63,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: jeredaco/oxygen-cs:latest
-          labels: build_id=${{ github.run_id }}
+          tags: |
+            jeredaco/oxygen-cs:latest
+            jeredaco/oxygen-cs:build#${{ github.run_id }}
