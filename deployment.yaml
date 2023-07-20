@@ -30,3 +30,28 @@ spec:
                 secretKeyRef:
                   name: oxygen-cs-secrets
                   key: HOST
+            - name: DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: oxygen-cs-secrets
+                  key: DATABASE
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: oxygen-cs-secrets
+                  key: TOKEN
+            - name: TICKETS
+              valueFrom:
+                secretKeyRef:
+                  name: oxygen-cs-secrets
+                  key: TICKETS
+            - name: T_MAX
+              valueFrom:
+                secretKeyRef:
+                  name: oxygen-cs-secrets
+                  key: T_MAX
+            - name: T_MIN
+              valueFrom:
+                secretKeyRef:
+                  name: oxygen-cs-secrets
+                  key: T_MIN
