@@ -24,4 +24,4 @@ RUN pipenv install --system --deploy --ignore-pipfile
 EXPOSE 8080
 
 # Exécutez la commande de démarrage de l'application
-CMD [ "python", "main.py" ]
+CMD [ "python", "src/main.py" ]
