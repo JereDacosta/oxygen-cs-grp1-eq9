@@ -14,6 +14,8 @@ ENV TICKETS=$TICKETS
 ENV T_MAX=$T_MAX
 ENV T_MIN=$T_MIN
 ENV DATABASE=$DATABASE
+ENV PYTHONUNBUFFERED=0
+
 
 # Installez les dépendances de l'application
 RUN pip install --upgrade pip
