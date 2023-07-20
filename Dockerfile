@@ -20,5 +20,8 @@ RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
 
+# Expose le port utilisé par l'application
+EXPOSE 8080
+
 # Exécutez la commande de démarrage de l'application
 CMD [ "python", "main.py" ]

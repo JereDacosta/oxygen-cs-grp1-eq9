@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oxygen-cs-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: oxygen-cs
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

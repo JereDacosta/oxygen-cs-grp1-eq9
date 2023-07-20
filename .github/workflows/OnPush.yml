@@ -66,3 +66,19 @@ jobs:
           tags: |
             jeredaco/oxygen-cs:latest
             jeredaco/oxygen-cs:${{ github.run_id }}
+
+      - name: Deploy to Kubernetes
+      if: github.ref == 'refs/heads/main'
+      uses: azure/k8s-set-context@v1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+
+      - name: Apply Kubernetes manifest
+        if: github.ref == 'refs/heads/main'
+        uses: azure/k8s-deploy@v1
+        with:
+          manifests: |
+            ./deployment.yaml
+            ./service.yaml
+          namespace: grp1-team9-namespace
