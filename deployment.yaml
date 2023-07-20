@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oxigen-cs-deployment
+  name: oxygen-cs-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oxigen-cs
+      app: oxygen-cs
   template:
     metadata:
       labels:
-        app: oxigen-cs
+        app: oxygen-cs
     spec:
       containers:
-        - name: oxigen-cs-container
-          image: jeredaco/oxigen-cs:latest
+        - name: oxygen-cs-container
+          image: jeredaco/oxygen-cs:latest
           ports:
             - containerPort: 8080
           resources:
