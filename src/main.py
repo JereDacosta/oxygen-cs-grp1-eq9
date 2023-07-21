@@ -4,6 +4,8 @@ import requests
 import json
 import time
 import os
+import datetime
+import mysql.connector
 
 
 class Main:
@@ -14,7 +16,10 @@ class Main:
         self.TICKETS = os.environ.get("TICKETS", 10)
         self.T_MAX = os.environ.get("T_MAX", 90)
         self.T_MIN = os.environ.get("T_MIN", 10)
-        self.DATABASE = os.environ.get("DATABASE", "Default")
+        self.DB_HOST = os.environ.get("DB_HOST", "Default")
+        self.DB_NAME = os.environ.get("DB_NAME", "Default")
+        self.DB_USER = os.environ.get("DB_USER", "Default")
+        self.DB_PASSWORD = os.environ.get("DB_PASSWORD", "Default")
 
     def __del__(self):
         if self._hub_connection != None:
@@ -59,7 +64,7 @@ class Main:
             print(data[0]["date"] + " --> " + data[0]["data"])
             date = data[0]["date"]
             dp = float(data[0]["data"])
-            # self.send_temperature_to_fastapi(date, dp)
+            self.send_temperature_to_database(dp)
             self.analyzeDatapoint(date, dp)
         except Exception as err:
             print(err)
@@ -73,13 +78,55 @@ class Main:
     def sendActionToHvac(self, date, action, nbTick):
         r = requests.get(f"{self.HOST}/api/hvac/{self.TOKEN}/{action}/{nbTick}")
         details = json.loads(r.text)
+        self.send_event_to_database(action + " : " + str(nbTick))
         print(details)
 
-    def send_event_to_database(self, timestamp, event):
+    def send_event_to_database(self, event):
         try:
+            mydb = mysql.connector.connect(
+                host=self.DB_HOST,
+                user=self.DB_USER,
+                password=self.DB_PASSWORD,
+                database=self.DB_NAME,
+            )
+
+            mycursor = mydb.cursor()
+
+            sql = "INSERT INTO hvac_events (action) VALUES (%s)"
+            val = (event,)
+            mycursor.execute(sql, val)
+
+            mydb.commit()
+            mydb.close()
+
+            print(mycursor.rowcount, "record inserted.")
             pass
-        except requests.exceptions.RequestException as e:
-            # To implement
+        except Exception as e:
+            print(e)
+            pass
+
+    def send_temperature_to_database(self, data):
+        try:
+            mydb = mysql.connector.connect(
+                host=self.DB_HOST,
+                user=self.DB_USER,
+                password=self.DB_PASSWORD,
+                database=self.DB_NAME,
+            )
+
+            mycursor = mydb.cursor()
+
+            sql = "INSERT INTO hvac_temps (temperature) VALUES (%s)"
+            val = (data,)
+            mycursor.execute(sql, val)
+
+            mydb.commit()
+            mydb.close()
+
+            print(mycursor.rowcount, "record inserted.")
+            pass
+        except Exception as e:
+            print(e)
             pass
 
 
