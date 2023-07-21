@@ -65,7 +65,7 @@ class Main:
             print(data[0]["date"] + " --> " + data[0]["data"])
             date = data[0]["date"]
             dp = float(data[0]["data"])
-            # self.send_temperature_to_fastapi(date, dp)
+            self.send_temperature_to_database(dp)
             self.analyzeDatapoint(date, dp)
         except Exception as err:
             print(err)
@@ -79,7 +79,7 @@ class Main:
     def sendActionToHvac(self, date, action, nbTick):
         r = requests.get(f"{self.HOST}/api/hvac/{self.TOKEN}/{action}/{nbTick}")
         details = json.loads(r.text)
-        self.send_event_to_database(self, action + " : " + str(nbTick))
+        self.send_event_to_database(action + " : " + str(nbTick))
         print(details)
 
     def send_event_to_database(self, event):
@@ -98,6 +98,7 @@ class Main:
             mycursor.execute(sql, val)
 
             mydb.commit()
+            mydb.close()
 
             print(mycursor.rowcount, "record inserted.")
             
@@ -106,9 +107,25 @@ class Main:
             # To implement
             pass
 
-    def send_temperature_to_database(self, date, data):
+    def send_temperature_to_database(self, data):
         try:
+            mydb = mysql.connector.connect(
+                host=self.DB_HOST,
+                user=self.DB_USER,
+                password=self.DB_PASSWORD,
+                database=self.DB_NAME
+            )
 
+            mycursor = mydb.cursor()
+
+            sql = "INSERT INTO hvac_temps (temperature) VALUES (%s)"
+            val = (data)
+            mycursor.execute(sql, val)
+
+            mydb.commit()
+            mydb.close()
+
+            print(mycursor.rowcount, "record inserted.")
 
 
             pass
