@@ -87,23 +87,22 @@ class Main:
                 host=self.DB_HOST,
                 user=self.DB_USER,
                 password=self.DB_PASSWORD,
-                database=self.DB_NAME
+                database=self.DB_NAME,
             )
 
             mycursor = mydb.cursor()
 
             sql = "INSERT INTO hvac_events (action) VALUES (%s)"
-            val = (event)
+            val = event
             mycursor.execute(sql, val)
 
             mydb.commit()
             mydb.close()
 
             print(mycursor.rowcount, "record inserted.")
-            
             pass
-        except requests.exceptions.RequestException as e:
-            # To implement
+        except Exception as e:
+            print(e)
             pass
 
     def send_temperature_to_database(self, data):
@@ -112,23 +111,22 @@ class Main:
                 host=self.DB_HOST,
                 user=self.DB_USER,
                 password=self.DB_PASSWORD,
-                database=self.DB_NAME
+                database=self.DB_NAME,
             )
 
             mycursor = mydb.cursor()
 
             sql = "INSERT INTO hvac_temps (temperature) VALUES (%s)"
-            val = (data)
+            val = data
             mycursor.execute(sql, val)
 
             mydb.commit()
             mydb.close()
 
             print(mycursor.rowcount, "record inserted.")
-
-
             pass
-        except requests.exceptions.RequestException as e:
+        except Exception as e:
+            print(e)
             pass
 
 
