@@ -84,10 +84,6 @@ class Main:
 
     def send_event_to_database(self, event):
         try:
-            pass
-        except requests.exceptions.RequestException as e:
-            # To implement
-
             mydb = mysql.connector.connect(
                 host=self.DB_HOST,
                 user=self.DB_USER,
@@ -96,16 +92,27 @@ class Main:
             )
 
             mycursor = mydb.cursor()
-            current_datetime = datetime.datetime.now()
 
-            sql = "INSERT INTO hvac_event (hvac_action, timestamp) VALUES (%s, %s)"
-            val = (event, current_datetime)
+            sql = "INSERT INTO hvac_events (action) VALUES (%s)"
+            val = (event)
             mycursor.execute(sql, val)
 
             mydb.commit()
 
             print(mycursor.rowcount, "record inserted.")
+            
+            pass
+        except requests.exceptions.RequestException as e:
+            # To implement
+            pass
 
+    def send_temperature_to_database(self, date, data):
+        try:
+
+
+
+            pass
+        except requests.exceptions.RequestException as e:
             pass
 
 
