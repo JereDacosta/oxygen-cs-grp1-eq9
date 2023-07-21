@@ -14,11 +14,16 @@ ENV TICKETS=$TICKETS
 ENV T_MAX=$T_MAX
 ENV T_MIN=$T_MIN
 ENV DATABASE=$DATABASE
+ENV PYTHONUNBUFFERED=0
+
 
 # Installez les dépendances de l'application
 RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
 
+# Expose le port utilisé par l'application
+EXPOSE 8080
+
 # Exécutez la commande de démarrage de l'application
-CMD [ "python", "main.py" ]
+CMD [ "python", "src/main.py" ]
