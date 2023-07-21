@@ -51,7 +51,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
       - name: Build and Push Docker Image
-        if: github.ref == 'refs/heads/Ressource-Kubernetes'
+        if: github.ref == 'refs/heads/28-ajout-persistance-des-events'
         uses: docker/build-push-action@v4  
         env:
           S_HOST: ${{secrets.HOST}}
@@ -68,14 +68,14 @@ jobs:
             jeredaco/oxygen-cs:${{ github.run_id }}
 
       - name: Deploy to Kubernetes
-        if: github.ref == 'refs/heads/Ressource-Kubernetes'
+        if: github.ref == 'refs/heads/28-ajout-persistance-des-events'
         uses: azure/k8s-set-context@v1
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
       - name: Apply Kubernetes manifest
-        if: github.ref == 'refs/heads/Ressource-Kubernetes'
+        if: github.ref == 'refs/heads/28-ajout-persistance-des-events'
         uses: azure/k8s-deploy@v1
         with:
           manifests: |
