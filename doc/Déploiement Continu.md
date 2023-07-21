@@ -13,8 +13,8 @@ Nous avons déployé la base de données utilisée tout au long des Lab 1 et 2 s
 ### Images Docker
 
 Nous avons créé les images Docker nécessaires pour notre application HVAC :
-- Image Docker Metrics : [nom_image_metrics]
-- Image Docker Oxygen-CS : [nom_image_oxygen-cs]
+- Image Docker Metrics : jeredaco/metrics:latest
+- Image Docker Oxygen-CS : jeredaco/oxygen-cs:latest
 
 Ces images sont utilisées dans les déploiements sur le cluster Kubernetes.
 
@@ -40,7 +40,7 @@ Nous avons déployé un Cron Job qui crée des sauvegardes périodiques de nos m
 
 ## Mise à jour des Images
 
-Nous avons choisi d'utiliser [Option 1 / Option 2] pour la mise à jour de nos images déployées.
+Nous avons choisi d'utiliser le pipeline pour la mise à jour de nos images déployées (sur dockerhub).
 
 ## Monitoring avec Grafana
 
@@ -54,5 +54,5 @@ Nous avons créé un dashboard sur Grafana qui permet de visualiser les données
 
 ### Dashboard pour Metrics
 
-Nous avons également créé un dashboard sur Grafana pour visualiser les métriques de processus créées lors des laboratoires précédents (Kanban, pull-request et CI/CD). Les données/métriques sont présentées sous la forme de [votre choix de présentation].
+Nous avons également créé un dashboard sur Grafana pour visualiser les métriques de processus créées lors des laboratoires précédents (Kanban, pull-request et CI/CD). Les données/métriques sont présentées sous la forme de tableaux, graphiques et gauges compteurs.
 
