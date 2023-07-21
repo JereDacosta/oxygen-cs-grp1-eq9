@@ -4,6 +4,8 @@ import requests
 import json
 import time
 import os
+import datetime
+import mysql.connector
 
 
 class Main:
@@ -15,6 +17,10 @@ class Main:
         self.T_MAX = os.environ.get("T_MAX", 90)
         self.T_MIN = os.environ.get("T_MIN", 10)
         self.DATABASE = os.environ.get("DATABASE", "Default")
+        self.DB_HOST = os.environ.get("DB_HOST", "Default")
+        self.DB_NAME = os.environ.get("DB_NAME", "Default")
+        self.DB_USER = os.environ.get("DB_USER", "Default")
+        self.DB_PASSWORD = os.environ.get("DB_PASSWORD", "Default")
 
     def __del__(self):
         if self._hub_connection != None:
@@ -73,13 +79,33 @@ class Main:
     def sendActionToHvac(self, date, action, nbTick):
         r = requests.get(f"{self.HOST}/api/hvac/{self.TOKEN}/{action}/{nbTick}")
         details = json.loads(r.text)
+        self.send_event_to_database(self, action + " : " + str(nbTick))
         print(details)
 
-    def send_event_to_database(self, timestamp, event):
+    def send_event_to_database(self, event):
         try:
             pass
         except requests.exceptions.RequestException as e:
             # To implement
+
+            mydb = mysql.connector.connect(
+                host=self.DB_HOST,
+                user=self.DB_USER,
+                password=self.DB_PASSWORD,
+                database=self.DB_NAME
+            )
+
+            mycursor = mydb.cursor()
+            current_datetime = datetime.datetime.now()
+
+            sql = "INSERT INTO hvac_event (hvac_action, timestamp) VALUES (%s, %s)"
+            val = (event, current_datetime)
+            mycursor.execute(sql, val)
+
+            mydb.commit()
+
+            print(mycursor.rowcount, "record inserted.")
+
             pass
 
 
