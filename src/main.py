@@ -93,7 +93,7 @@ class Main:
             mycursor = mydb.cursor()
 
             sql = "INSERT INTO hvac_events (action) VALUES (%s)"
-            val = event
+            val = (event,)
             mycursor.execute(sql, val)
 
             mydb.commit()
@@ -117,7 +117,7 @@ class Main:
             mycursor = mydb.cursor()
 
             sql = "INSERT INTO hvac_temps (temperature) VALUES (%s)"
-            val = data
+            val = (data,)
             mycursor.execute(sql, val)
 
             mydb.commit()
