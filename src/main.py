@@ -16,7 +16,6 @@ class Main:
         self.TICKETS = os.environ.get("TICKETS", 10)
         self.T_MAX = os.environ.get("T_MAX", 90)
         self.T_MIN = os.environ.get("T_MIN", 10)
-        self.DATABASE = os.environ.get("DATABASE", "Default")
         self.DB_HOST = os.environ.get("DB_HOST", "Default")
         self.DB_NAME = os.environ.get("DB_NAME", "Default")
         self.DB_USER = os.environ.get("DB_USER", "Default")
